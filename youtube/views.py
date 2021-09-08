@@ -21,7 +21,7 @@ def download_video(request):
             ydl_opts = {'outtmp1': 'D:/'}
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([video_url])
-            messages.success(request, 'Video Downloaded.')
+            messages.success(request, 'Your Video has Downloaded.')
             return redirect('home')
         else:
             messages.warning(request, 'Please Enter Video URL')
@@ -32,7 +32,7 @@ def download_video(request):
 
 def facebook(request):
     if request.method == 'POST':
-        LINK = input("Enter a Facebook Video Post URL: ")
+        LINK = request.POST['fb_url']
         html = r.get(LINK)
         hdvideo_url = re.search('hd_src:"(.+?)"', html.text)[1]
 
@@ -41,4 +41,4 @@ def facebook(request):
         return render(request,'pages/facebook.html')
     else:
         messages.warning(request, 'Please Enter Video URL')
-        return redirect('facebook')
+        return render(request,'pages/facebook.html')

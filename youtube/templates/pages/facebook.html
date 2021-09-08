@@ -21,7 +21,7 @@
 
     <div class="container">
       <div class="mb-3">
-        <form action="{% url 'download' %}" method="post">
+        <form action="{% url 'fdownload' %}" method="post">
           {% csrf_token %}
         <label for="exampleFormControlInput1" class="form-label"><b>Enter Video URL</b></label>
         <input type="text" class="form-control" name="fb_url" id="url_name" placeholder="Facebook video URL">
